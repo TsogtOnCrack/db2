@@ -1,9 +1,11 @@
 const express = require ("express")
 const mongoose = require('mongoose')
 const Blogs = require("./models/Blogs")
+const cors = require("cors")
 
 const app = express()
 app.use(express.json())
+app.use (cors())
 
 const MONGODB_LINK = "mongodb+srv://tsogt:plsopen1@fs.lmd09pj.mongodb.net/test"
 
@@ -17,7 +19,7 @@ connection.once("once",()=>{
 
 app.get("/", async (req, res)=>{
     const Blog  = await Blogs.find().lean()
-    res.send({data:users})
+    res.send({Blog})
 
 })
 

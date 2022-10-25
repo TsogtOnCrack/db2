@@ -20,11 +20,8 @@ connection.once("once",()=>{
 app.get("/", async (req, res)=>{
     const Blog  = await Blogs.find().lean()
     res.send({Blog})
+    console.log({Blog})
 
-})
-
-app.get ("/blogs", (req, res)=>{
-    res.send("helo")
 })
 
 app.post  ("/blogs", async (req, res)=>{

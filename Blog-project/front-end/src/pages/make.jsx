@@ -11,7 +11,7 @@ export default function Make() {
   //     blogs:[]
   // })
 
-  const { posts, setPosts } = useState([]);
+  const [posts, setPosts] = useState();
 
   useEffect(() => {
     // api.get("/").then(res=>{
@@ -21,9 +21,14 @@ export default function Make() {
     // })
 
     async function fetchData() {
-      const response = await api.get("/");
-      let result = response.data;
-      setPosts(result.data);
+      // const response = await api.get("/");
+      // let result = response.data;
+      // setPosts(result.data);
+
+      api.get("/").then(res=>{
+        console.log(...res.data.Blog)
+        setPosts(...res.data.Blog)
+    })
     }
     fetchData();
   }, []);

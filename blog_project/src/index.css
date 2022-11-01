@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.cabin {
+    font-family: 'Cabin', sans-serif;
+}
+.mulish {
+    font-family: 'Mulish', sans-serif;
+}

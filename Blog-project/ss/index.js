@@ -17,20 +17,21 @@ connection.once("once",()=>{
 })
 
 
-app.get("/", async (req, res)=>{
+app.get("/blogs", async (req, res)=>{
     const Blog  = await Blogs.find().lean()
     res.send({Blog})
 
 })
 
-app.post  ("/blogs", async (req, res)=>{
+app.post("/blogs", async (req, res)=>{
 
-    const {author, content, comments} = req.body
+    const {author, content, comments, title} = req.body
      
     const blog = await Blogs.create ({
         author,
         content,
-        comments
+        comments,
+        title,
     })
 
     res.send("You have posted a new Blog")

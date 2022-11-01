@@ -1,6 +1,26 @@
 import { Card } from "../components/card";
+import axios from "axios"
+import { useState, useEffect } from "react";
 
 export const Main = () => {
+
+  const api = axios.create({
+    baseURL: "http://0.0.0.0:3001/blogs",
+  });
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      api.get("/").then(res => {
+        console.log(res.data.Blog)
+        setPosts(res.data.Blog)
+      })
+    }
+    fetchData();
+  }, []);
+
+
+
   return (
     <div className="flex flex-col w-screen max-w-MAX_WIDTH px-10  ">
       <div className="flex flex-col justify-start my-10">
@@ -22,8 +42,13 @@ export const Main = () => {
           Our latest updates and blogs about managing your team
         </div>
       </div>
-
-      <Card />
+      <div className="flex flex-wrap justify-center">
+        {
+          posts.map((el) => {
+            return <div key = {el._id}> <Card author = {el.author} date = {el.content.date} bg_pic = {el.content["background-picture"]} title = {el.title}  /></div>
+          })
+        }
+      </div>
     </div>
   );
 };

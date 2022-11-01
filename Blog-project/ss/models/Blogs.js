@@ -6,6 +6,7 @@ const blogSchema = new Schema({
     author: Object,
     content : Object,
     comments : Array,
+    title : Object,
 })
 
 const Blogs = model("Blogs", blogSchema)

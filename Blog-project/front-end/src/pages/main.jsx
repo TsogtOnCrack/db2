@@ -1,6 +1,7 @@
 import { Card } from "../components/card";
 import axios from "axios"
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Main = () => {
 
@@ -8,6 +9,7 @@ export const Main = () => {
     baseURL: "http://0.0.0.0:3001/blogs",
   });
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -38,14 +40,14 @@ export const Main = () => {
             />
           </svg>
         </div>
-        <div className="mulish text-[#6D7D8B] text-[18px]">
+        <div onClick={() => navigate('/adas')} className="mulish text-[#6D7D8B] text-[18px]">
           Our latest updates and blogs about managing your team
         </div>
       </div>
       <div className="flex flex-wrap justify-center">
         {
           posts.map((el) => {
-            return <div key = {el._id}> <Card author = {el.author} date = {el.content.date} bg_pic = {el.content["background-picture"]} title = {el.title}  /></div>
+            return <div key = {el._id}> <Card id={el._id} author = {el.author} date = {el.content.date} bg_pic = {el.content["background-picture"]} title = {el.title}  /></div>
           })
         }
       </div>

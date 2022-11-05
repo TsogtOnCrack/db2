@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 export const Card = (props) => {
-  const {bg_pic="", title = {header: "default title", body : "This field is empty"}, author ={"name":"Macarthy Dick", "image": "this is url"} , date = "ur mom's birthday"} = props;
+  const navigate = useNavigate();
+
+  const {id, bg_pic="", title = {header: "default title", body : "This field is empty"}, author ={"name":"Macarthy Dick", "image": "this is url"} , date = "ur mom's birthday"} = props;
+
+
 
   return (
-    <div className=" h-[440px] w-[360px] bg-white flex flex-col items-center justify-between overflow-hidden rounded-3xl m-5">
+    <div onClick={() => navigate(`/blogs/${id}`)} className=" h-[440px] w-[360px] bg-white flex flex-col items-center justify-between overflow-hidden rounded-3xl m-5">
       <div className=" w-full h-[35%] bg-gray-300 overflow-hidden">
         <img src={bg_pic} className= "w-full" alt="" />
       </div>

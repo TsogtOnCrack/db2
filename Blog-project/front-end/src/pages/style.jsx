@@ -1,16 +1,21 @@
 import { Card } from "../components/card";
 import { Link } from "react-router-dom";
-import { ApiError } from "next/dist/server/api-utils";
 import axios from "axios";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
 
 const sendapost = async (info)=>{
-    const json = JSON.stringify(info)
-    const res = await axios.post("http://0.0.0.0:3001/blogs", json)
+    //const json = JSON.stringify({info})
+    console.log('Info', info)
+    const res = await axios.post("http://0.0.0.0:3001/blogs", info)
     console.log(res)
 }
 
 export default function Style() {
+
+  const {name,title, blog_content, summary, setSummary, prof_pic_url, bg_picture, setBg_picture} = useContext(UserContext)
+
   const api = axios.create({
     baseURL: "http://0.0.0.0:3001/blogs",
   });
@@ -32,7 +37,7 @@ export default function Style() {
       </div>
 
       <div className="flex justify-around w-screen items-center">
-        <Card />
+        <Card bg_pic = {bg_picture} title={{"header":title, "body": summary } }author = {{"name" : name, "image": prof_pic_url}}   />
 
         <div className="flex flex-col h-[500px]">
           <div className="w-[400px] h-[400px] flex flex-col justify-center ">
@@ -40,17 +45,42 @@ export default function Style() {
               type="text"
               className="border-[2px] border-gray-400 rounded-md m-4 p-2"
               placeholder="Background-image url"
+              onChange={(event)=>{
+                setBg_picture(event.target.value)
+              }}
+              value = {bg_picture}
             />
             <input
               type="text"
               className="border-[2px] border-gray-400 rounded-md m-4 p-2"
               placeholder="Subtitle"
+              value = {summary}
+              onChange = {(event)=>{
+                setSummary(event.target.value)
+              }} 
             />
           </div>
           <div className="flex justify-center items-center h-100px">
-            <Link>
+            <Link to="/">
               <p
-                onClick={() => sendapost()}
+                onClick={() => sendapost(
+                  {author : {
+                    image:prof_pic_url,
+                    name : name
+                  },
+                  title:{
+                    header:title,
+                    body:summary
+                  },
+                  content:{
+                    body: blog_content,
+                    date : "3/4/5",
+                    "background-picture": bg_picture
+                  }, comments:[]
+
+                
+                }
+                )}
                 className="  p-1 rounded-md border-[2px] border-gray-400 cursor-pointer font-bold text-gray-600"
               >
                 Done!

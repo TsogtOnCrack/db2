@@ -7,6 +7,7 @@ import { Main } from "./pages/main";
 import Make from "./pages/make";
 import { MainLayout } from "./layout/mainLayout";
 import Style from "./pages/style";
+import { Indiv } from "./components/individual";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
               <Route path="blogs" element={<Blogs />} />
               <Route path="make" element={<Make />} />
               <Route path="style" element={<Style />} />
+              <Route path="blogs/:id" element={<Indiv/>} />
             </Route>
           </Routes>
         </BrowserRouter>

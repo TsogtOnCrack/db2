@@ -34,9 +34,19 @@ app.post("/blogs", async (req, res)=>{
         title,
     })
 
-    res.send("You have posted a new Blog")
+    res.send({blog})
 
-})
+}) 
+
+app.get("/blogs/:postId", async (req, res) => {
+    const postId = req.params.postId;
+    console.log('p: ', postId)
+    const post = await Blogs.findById(postId);
+    console.log('p2: ', post)
+    res.send({
+      data: post,
+    });
+  });
 
 app.listen(3001 , () =>{
     console.log("ss is running on port: 3001")

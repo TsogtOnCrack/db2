@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 
 
-const nav_list = ["Products", "Services", "Contact", "Log in", "Get Access"];
+const nav_list = ["Products", "Services", "Contact", "Log in", "Post Blog"];
 
-const SPECIAL = "Get Access";
+const SPECIAL = "Post Blog";
 
 
 export const Header = () => {
@@ -14,14 +14,18 @@ export const Header = () => {
   const navJob = (title) => {
     if (title == "Log in") {
       console.log(name);
-    } else {
-      return;
+      return
+    } 
+    if(title == "Post Blog"){
+      window.location.href = "/make"
     }
+    return;
+    
   };
   
   return (
     <div className="w-screen fixed h-[70px] flex flex-row justify-between px-12 items-center ">
-      <div className="logo">
+      <div className="" onClick={()=>{window.location.href = "/"}}>
         <svg
           width="85"
           height="22"

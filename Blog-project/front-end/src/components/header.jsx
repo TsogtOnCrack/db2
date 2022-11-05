@@ -1,10 +1,24 @@
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+
+
 const nav_list = ["Products", "Services", "Contact", "Log in", "Get Access"];
 
 const SPECIAL = "Get Access";
 
-export const Header = () => {
-  
 
+export const Header = () => {
+
+  let {name} = useContext(UserContext)
+
+  const navJob = (title) => {
+    if (title == "Log in") {
+      console.log(name);
+    } else {
+      return;
+    }
+  };
+  
   return (
     <div className="w-screen fixed h-[70px] flex flex-row justify-between px-12 items-center ">
       <div className="logo">
@@ -22,10 +36,13 @@ export const Header = () => {
         </svg>
       </div>
       <div className="navs flex flex-row">
-        {nav_list.map((el,i) => {
+        {nav_list.map((el, i) => {
           return (
             <p
-            key = {i}
+              onClick={() => {
+                navJob(el);
+              }}
+              key={i}
               className={` cursor-pointer ${
                 el != SPECIAL
                   ? ` hover:text-black flex items-center text-[#6D7D8B] mx-4 underline text-[16px]`

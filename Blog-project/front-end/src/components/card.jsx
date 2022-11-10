@@ -9,7 +9,7 @@ export const Card = (props) => {
 
   return (
     <div onClick={() => navigate(`/blogs/${id}`)} className=" h-[440px] w-[360px] bg-white flex flex-col items-center justify-between overflow-hidden rounded-3xl m-5">
-      <div className=" w-full h-[35%] bg-gray-300 overflow-hidden">
+      <div className=" w-full h-[35%] bg-gray-300 overflow-hidden flex justify-center items-center">
         <img src={bg_pic} className= "w-full" alt="" />
       </div>
       <div className="main h-[50%] w-[80%] bg-white flex flex-col ">
@@ -18,7 +18,7 @@ export const Card = (props) => {
       </div>
       <div className="footer h-[15%] w-full flex flex-row items-center px-5">
         <div className="prof w-[45%] flex flex-row justify-between items-center">
-          <div className="circle rounded-full h-[45px] w-[45px] overflow-hidden bg-gray-300">
+          <div className="circle rounded-full h-[45px] w-[45px] overflow-hidden bg-gray-300 flex justify-center items-center">
             <img src={author.image} className = "w-full h-full" alt="" />
           </div>
             <div className="max-w-[60%] name mulish text-[12px] text-[#6D7D8B] justify-self-end  overflow-clip ">{author.name}</div>

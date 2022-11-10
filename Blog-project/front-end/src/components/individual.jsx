@@ -41,8 +41,9 @@ export const Indiv = () => {
         {
             posts.map((post) => {
                 return<div>
-                    <div className="flex flex-col mt-20  max-w-[60%]">
-                        <h1 className=" text-[48px] font-[800] font-mukta">
+                    <div className=" flex justify-center">
+                    <div className="flex flex-col items-start mt-20  justify-center max-w-[60vw]  mx-5">
+                        <h1 className=" text-[48px] font-[800] font-mukta w-[60vw]  flex justify-start">
                             {post.title.header}</h1>
 
 
@@ -50,8 +51,8 @@ export const Indiv = () => {
 
                         <div className="footer py-4 h-[15%] w-[250px] flex flex-row items-center">
                             <div className="prof w-[45%] flex flex-row justify-between items-center">
-                                <div className="circle rounded-full h-[45px] w-[45px] overflow-hidden bg-gray-300">
-                                    <img src={post.author.image} className="w-full h-full" alt="" />
+                                <div className="circle rounded-full h-[45px] w-[45px] overflow-hidden bg-gray-300 flex justify-center items-center">
+                                    <img src={post.author.image} className="w-full " alt="" />
                                 </div>
                                 <div className="max-w-[60%] name mulish text-[12px] text-[#6D7D8B] justify-self-end  overflow-clip ">{post.author.name}</div>
 
@@ -63,13 +64,16 @@ export const Indiv = () => {
 
 
                     </div>
+                    </div>
 
-                    <div className="max-h-[500px] overflow-hidden my-20">
+                    <div className="max-h-[500px] overflow-hidden my-20 flex justify-center items-center">
                         <img className=" max-w-MAX_WIDTH w-screen px-10" src={post.content["background-picture"]} alt="" />
                     </div>
 
-                    <div className="max-w-[60vw] mb-40">
+                    <div className="w-full flex justify-center">
+                    <div className="md:max-w-[60vw] max-w-[80vw] mb-40">
                         {post.content.body}
+                    </div>
                     </div>
                 </div>
 

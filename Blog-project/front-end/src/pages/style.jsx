@@ -1,24 +1,19 @@
 import { Card } from "../components/card";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import { api } from "../utils/api";
 
 const sendapost = async (info)=>{
     //const json = JSON.stringify({info})
     console.log('Info', info)
-    const res = await axios.post("http://0.0.0.0:3001/blogs", info)
+    const res = await api.post("http://0.0.0.0:3001/blogs", info)
     console.log(res)
 }
 
 export default function Style() {
 
   const {name,title, blog_content, summary, setSummary, prof_pic_url, bg_picture, setBg_picture} = useContext(UserContext)
-
-  const api = axios.create({
-    baseURL: "http://0.0.0.0:3001/blogs",
-  });
   return (
     <div className="flex h-[70vh] flex-col justify-between">
       <div className="mb-5 ml-[10vw] ">

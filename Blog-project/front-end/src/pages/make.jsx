@@ -1,22 +1,20 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import { api } from "../utils/api";
 
 export default function Make() {
 
   const { setTitle, title, blog_content, setBlog_content } = useContext(UserContext)
 
-  const api = axios.create({
-    baseURL: "http://0.0.0.0:3001/blogs",
-  });
+  
   const [posts, setPosts] = useState();
 
   useEffect(() => {
     async function fetchData() {
-      api.get("/").then((res) => {
+      api.get("/blogs").then((res) => {
         console.log(...res.data.Blog);
         setPosts(...res.data.Blog);
       });

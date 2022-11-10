@@ -8,6 +8,7 @@ import Make from "./pages/make";
 import { MainLayout } from "./layout/mainLayout";
 import Style from "./pages/style";
 import { Indiv } from "./components/individual";
+import { Login } from "./pages/login";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
               <Route path="blogs" element={<Blogs />} />
               <Route path="make" element={<Make />} />
               <Route path="style" element={<Style />} />
+              <Route path="login" element={<Login />} />
               <Route path="blogs/:id" element={<Indiv/>} />
             </Route>
           </Routes>

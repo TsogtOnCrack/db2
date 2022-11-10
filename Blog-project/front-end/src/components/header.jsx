@@ -13,11 +13,12 @@ export const Header = () => {
 
   const navJob = (title) => {
     if (title == "Log in") {
-      console.log(name);
+      window.location.href = "/login"
       return
     } 
     if(title == "Post Blog"){
       window.location.href = "/make"
+      return
     }
     return;
     

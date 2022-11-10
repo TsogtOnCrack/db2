@@ -1,19 +1,15 @@
 import { Card } from "../components/card";
-import axios from "axios"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../utils/api";
 
 export const Main = () => {
-
-  const api = axios.create({
-    baseURL: "http://0.0.0.0:3001/blogs",
-  });
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
-      api.get("/").then(res => {
+      api.get("/blogs").then(res => {
         console.log(res.data.Blog)
         setPosts(res.data.Blog)
       })
@@ -45,6 +41,10 @@ export const Main = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-center">
+        
+        {
+          !posts[0] && <div className="flex flex-col w-full"><div className="text-[20px]">...</div><div className=" font-mukta text-[20px] w-full">No one has posted yet. It's your chance to be the first!</div></div>
+        }
         {
           posts.map((el) => {
             return <div key = {el._id}> <Card id={el._id} author = {el.author} date = {el.content.date} bg_pic = {el.content["background-picture"]} title = {el.title}  /></div>

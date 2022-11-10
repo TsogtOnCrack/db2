@@ -2,10 +2,12 @@ const express = require ("express")
 const mongoose = require('mongoose')
 const Blogs = require("./models/Blogs")
 const cors = require("cors")
-
+const userRoute = require("./routes/userRt")
+// const middleware = require("./md")
 const app = express()
+app.use(userRoute);
 app.use(express.json())
-app.use (cors())
+app.use(cors())
 
 const MONGODB_LINK = "mongodb+srv://tsogt:plsopen1@fs.lmd09pj.mongodb.net/test"
 
@@ -18,11 +20,9 @@ connection.once("once",()=>{
 
 
 app.get("/blogs", async (req, res)=>{
-    const Blog  = await Blogs.find().lean()
+    const Blog  = await Blogs.find().lean().sort({ createdAt: -1 })
     res.send({Blog})
-
 })
-
 app.post("/blogs", async (req, res)=>{
 
     const {author, content, comments, title} = req.body
@@ -37,7 +37,6 @@ app.post("/blogs", async (req, res)=>{
     res.send({blog})
 
 }) 
-
 app.get("/blogs/:postId", async (req, res) => {
     const postId = req.params.postId;
     console.log('p: ', postId)
@@ -48,8 +47,6 @@ app.get("/blogs/:postId", async (req, res) => {
     });
   });
 
-app.listen(3001 , () =>{
-    console.log("ss is running on port: 3001")
-})
+module.exports = app; 
 
 
